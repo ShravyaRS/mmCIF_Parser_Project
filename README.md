@@ -1,51 +1,41 @@
 # 🧬 mmCIF Parser Project
 
-This project implements a clean and modular mmCIF file parser in Python, built from scratch using custom data structures.  
-It reads protein structure files in `.cif` format and organizes the atomic data into meaningful Python classes.
+A from-scratch **mmCIF parser** for molecular structures — written in pure Python, **without Biopython**.  
+Designed for educational purposes, research exploration, or lightweight structural data parsing.
 
----
+## 🧠 Features
+- Parses `.cif` files conforming to the mmCIF format
+- No external dependencies
+- Modular, object-oriented design
+- Easy to extend for bio/cheminformatics projects
 
-## 📁 Folder Structure
+## 📁 Project Structure
 
+## ▶️ Usage
 
----
-
-## ⚙️ How It Works
-
-- **`data_structures.py`**: Defines core objects: `Atom`, `Chain`, `ProteinStructure`
-- **`mmcif_parser.py`**: Parses mmCIF file and fills the data structure with atoms
-- **`main.py`**: Loads the `.cif` file, uses parser, and prints residues per chain
-
----
-
-## ▶️ How to Run
-
-1. Open your terminal or command prompt  
-2. Navigate to your project folder:
-
-   ```bash
-   cd path/to/mmCIF_Parser_Project
-
+Run the main script:
+```bash
 python main.py
+python -m unittest discover -s tests
 
-## 💡 Why This Project?
+__pycache__/
+*.pyc
+*.log
 
-This project shows how bioinformatics and computer science intersect.  
-Instead of using Biopython, we build everything from scratch — ideal for learning and academic use.
+git add .gitignore
+git commit -m "Add .gitignore"
+git push
 
-- 📚 Great for understanding PDB/mmCIF format  
-- 🧠 Demonstrates class design & object-oriented Python  
-- 🧪 Useful for molecular structure analysis  
+MIT License
+Shravya R S
+GitHub: @ShravyaRS
 
 ---
 
-## 📢 Author
+✅ This version has:
+- Clear headings with emojis to catch attention  
+- Code blocks and directory structure visualized  
+- Final `.gitignore` section and license properly formatted  
+- Hyperlinked GitHub handle  
 
-Shravya R S  
-Bioinformatics Enthusiast | Python Developer  
-*(This project is a part of a class assignment and intended for potential publication.)*
-
-## 🔬 Academic Note
-This parser was written entirely from scratch without using external libraries like Biopython. 
-It was developed for educational purposes and academic demonstration — particularly to highlight core principles of object-oriented design in Python and low-level understanding of the mmCIF format.
-
+Let me know if you want to add a sample input/output file snippet or description of `main.py`.
