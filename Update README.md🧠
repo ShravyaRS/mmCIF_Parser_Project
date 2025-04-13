@@ -32,10 +32,9 @@ GitHub: @ShravyaRS
 
 ---
 
-✅ This version has:
-- Clear headings with emojis to catch attention  
-- Code blocks and directory structure visualized  
-- Final `.gitignore` section and license properly formatted  
-- Hyperlinked GitHub handle  
+- Added emoji-based section headers for clarity  
+- Visualized folder structure and code blocks for easier understanding  
+- Included final .gitignore and MIT license section  
+- Hyperlinked GitHub handle for profile access  
+- Cleaned up formatting and internal notes  
 
-Let me know if you want to add a sample input/output file snippet or description of `main.py`.
