@@ -22,3 +22,9 @@ mmCIF_Parser_Project/
 ├── mmcif_parser.py      # Core parsing logic
 ├── example.cif          # Sample mmCIF file
 └── README.md            # This file
+## 📌 Usage
+
+To run the parser on the provided example file:
+
+```bash
+python main.py data/example.cif
