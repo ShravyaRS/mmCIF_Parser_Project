@@ -107,4 +107,17 @@ To make this mmCIF Parser Project more impactful, we've integrated advanced biol
 These files provide deeper biological context and show the power of parsing mmCIF data in real-world applications like mutation analysis and structure-based modeling.
 
 ---
+---
+
+## 🔍 Extended Analyses
+
+To make this mmCIF Parser Project more impactful, we've integrated advanced biological insights related to real enzymes:
+
+- 🔬 [Enzyme Comparison: TPH1 vs PAH](./enzyme_comparison.md)
+- 🧬 [Disease Mutation Prediction](./mutation_prediction.md)
+- 🧠 [Structure Prediction and Modeling](./structure_prediction.md)
+
+These files provide deeper biological context and show the power of parsing mmCIF data in real-world applications like mutation analysis and structure-based modeling.
+
+---
 
