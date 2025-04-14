@@ -84,6 +84,10 @@ To run the parser on the provided example file:
 
 ```bash
 python main.py data/example.cif
+### Theoretical Binary Flowchart
+
+![Theoretical Binary Flowchart](A_flowchart_diagram_depicts_a_theoretical_binary_d.png)
+
 ## 📂 Theoretical Model
 
 📄 [Theoretical Binary Representation](./theoretical_model.md)  
