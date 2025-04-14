@@ -42,4 +42,4 @@ for file_name in enzyme_files:
         for key, value in summary.items():
             f.write(f"{key}: {value}\n")
     
-    print(f"✅ Parsed and saved summary for {file_name}")
+    print(f"✅ Parsed and saved summary for {file_name}") 
