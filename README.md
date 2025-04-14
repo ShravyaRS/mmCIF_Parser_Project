@@ -14,33 +14,60 @@ This project demonstrates how to parse mmCIF (Macromolecular Crystallographic In
 
 ---
 
-## 🧮 Theoretical Binary Data Structure Model
+# 📘 Theoretical Binary Data Structure Model for mmCIF Parser
 
-To enhance the efficiency and compactness of atomic-level data parsing from mmCIF files, we propose a theoretical binary data structure to represent each atom's information. This model can be used for low-level optimization or future file compression.
+## 🧠 Objective
+To define a theoretical low-level binary data structure for storing mmCIF entries and sections efficiently in memory, mimicking a compiled or serialized format.
 
-### 🧱 Binary Layout (Example for One Atom Entry)
+---
 
-| Field            | Bits | Description                          |
-|------------------|------|--------------------------------------|
-| Atom ID          | 16   | Unique identifier for the atom       |
-| Atom Name        | 32   | Encoded string (ASCII binary)        |
-| Residue Name     | 32   | 3-letter residue code                |
-| Chain ID         | 8    | Single character chain identifier    |
-| Residue Number   | 16   | Residue sequence number              |
-| X Coordinate     | 32   | IEEE 754 floating-point format       |
-| Y Coordinate     | 32   | IEEE 754 floating-point format       |
-| Z Coordinate     | 32   | IEEE 754 floating-point format       |
-| Element Symbol   | 16   | 1 or 2-letter element encoded        |
-| Occupancy        | 16   | Float encoded                        |
-| B-factor         | 16   | Float encoded                        |
+## 1️⃣ Data Record Structure
 
-Total = **256 bits (32 bytes)** per atom
+Each mmCIF data item (e.g. atom site, loop header, values) is internally represented in the following binary format:
 
-### 🧬 Purpose
 
-- Enables future binary-based CIF formats or compression
-- Demonstrates theoretical understanding of memory-efficient storage
-- Adds novelty to the project from both a CS and bioinformatics angle
+| Segment            | Description                                   | Example                    |
+|--------------------|-----------------------------------------------|----------------------------|
+| RECORD_TYPE (1B)   | 0x01 = header, 0x02 = loop, 0x03 = data value | `0x02`                     |
+| RECORD_ID (2B)     | Unique ID for the entry (short int)           | `0x00FA`                   |
+| FIELD_NAME_LENGTH  | Length of the field name (1B)                 | `0x07`                     |
+| FIELD_NAME         | UTF-8 string of field name                    | `_atom_site`               |
+| VALUE_LENGTH       | Length of the value (1B)                      | `0x05`                     |
+| VALUE              | UTF-8 string of the value                     | `C1'`                      |
+
+---
+
+## 2️⃣ Example: `_atom_site.label_atom_id  C1'`
+
+In binary (hex representation):
+
+
+---
+
+## 3️⃣ Block Structure
+
+Each mmCIF block is a binary sequence of multiple `RECORD` units. Parsing follows this logic:
+
+
+Optional: A BLOCK_HEADER could store metadata like number of loops, atom count, etc.
+
+---
+
+## 4️⃣ Why Use This Model?
+
+- 🧠 Enables serialization and memory-efficient storage
+- ⚡️ Fast search and indexing in future compiled applications
+- 🔬 Suitable for integration with compiled languages (C, Rust)
+- 💾 Can be exported as `.bin` for direct loading into visualization tools or bioinformatics engines
+
+---
+
+## 📦 Future Possibility
+
+We may build a compiler that translates standard mmCIF into this binary form for fast parsing in high-performance environments like protein modeling pipelines.
+
+---
+
 
 
 ## 📂 File Structure
@@ -57,3 +84,5 @@ To run the parser on the provided example file:
 
 ```bash
 python main.py data/example.cif
+
+
