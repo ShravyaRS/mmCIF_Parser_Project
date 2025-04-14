@@ -84,5 +84,9 @@ To run the parser on the provided example file:
 
 ```bash
 python main.py data/example.cif
+## 📂 Theoretical Model
+
+📄 [Theoretical Binary Representation](./theoretical_model.md)  
+A structured binary representation of mmCIF elements in memory.
 
 
