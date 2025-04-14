@@ -3,6 +3,7 @@
 This project demonstrates how to parse mmCIF (Macromolecular Crystallographic Information File) formats **from scratch using Python**. It serves as both an educational resource and a practical tool for molecular biology and structural bioinformatics.
 
 ---
+👉 Check out the [Features](Features.md) of this project.
 
 ## 🚀 Features
 
