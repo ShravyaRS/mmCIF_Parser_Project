@@ -1,40 +1,45 @@
-from data_structures import Atom, ProteinStructure
+from Bio.PDB.MMCIF2Dict import MMCIF2Dict
+import os
 
-def parse_mmcif(file_path):
-    structure = None
-    loop_started = False
-    atom_headers = []
-    atom_data_started = False
+# Folder where mmCIF files are stored
+data_folder = "real_data"
 
-    with open(file_path, 'r') as f:
-        for line in f:
-            line = line.strip()
+# List of enzyme files to parse
+enzyme_files = ["6OB0.cif", "1PAH.cif"]
 
-            if line.startswith("data_"):
-                structure = ProteinStructure(line[5:])
-            elif line.startswith("loop_"):
-                loop_started = True
-                atom_headers = []
-                atom_data_started = False
-            elif loop_started and line.startswith("_atom_site."):
-                atom_headers.append(line)
-            elif loop_started and line:
-                if not atom_data_started:
-                    atom_data_started = True
-                fields = line.split()
-                if len(fields) < 11:
-                    continue
-                atom = Atom(
-                    serial=fields[1],
-                    name=fields[2],
-                    res_name=fields[3],
-                    chain_id=fields[4],
-                    res_seq=fields[5],
-                    x=fields[6],
-                    y=fields[7],
-                    z=fields[8],
-                    element=fields[10],
-                )
-                structure.add_atom(atom)
+# Output folder to save summary text files
+output_folder = "summaries"
+os.makedirs(output_folder, exist_ok=True)
 
-    return structure
+# Function to parse and extract key info
+def parse_mmcif_file(file_path):
+    data = MMCIF2Dict(file_path)
+
+    # Extract metadata safely
+    description = data.get('_entity.pdbx_description', ['N/A'])[0]
+    struct_title = data.get('_struct.title', 'N/A')
+    resolution = data.get('_refine.ls_d_res_high', ['N/A'])[0]
+    exp_method = data.get('_exptl.method', ['N/A'])[0]
+    deposition_date = data.get('_pdbx_database_status.recvd_initial_deposition_date', 'N/A')
+
+    # Return the extracted summary
+    return {
+        "Description": description,
+        "Title": struct_title,
+        "Resolution (Å)": resolution,
+        "Method": exp_method,
+        "Deposition Date": deposition_date
+    }
+
+# Process each enzyme file
+for file_name in enzyme_files:
+    file_path = os.path.join(data_folder, file_name)
+    summary = parse_mmcif_file(file_path)
+
+    # Save the output in .txt format
+    output_file = os.path.join(output_folder, file_name.replace(".cif", "_summary.txt"))
+    with open(output_file, "w") as f:
+        for key, value in summary.items():
+            f.write(f"{key}: {value}\n")
+    
+    print(f"✅ Parsed and saved summary for {file_name}")
