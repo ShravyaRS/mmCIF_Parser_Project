@@ -14,6 +14,35 @@ This project demonstrates how to parse mmCIF (Macromolecular Crystallographic In
 
 ---
 
+## 🧮 Theoretical Binary Data Structure Model
+
+To enhance the efficiency and compactness of atomic-level data parsing from mmCIF files, we propose a theoretical binary data structure to represent each atom's information. This model can be used for low-level optimization or future file compression.
+
+### 🧱 Binary Layout (Example for One Atom Entry)
+
+| Field            | Bits | Description                          |
+|------------------|------|--------------------------------------|
+| Atom ID          | 16   | Unique identifier for the atom       |
+| Atom Name        | 32   | Encoded string (ASCII binary)        |
+| Residue Name     | 32   | 3-letter residue code                |
+| Chain ID         | 8    | Single character chain identifier    |
+| Residue Number   | 16   | Residue sequence number              |
+| X Coordinate     | 32   | IEEE 754 floating-point format       |
+| Y Coordinate     | 32   | IEEE 754 floating-point format       |
+| Z Coordinate     | 32   | IEEE 754 floating-point format       |
+| Element Symbol   | 16   | 1 or 2-letter element encoded        |
+| Occupancy        | 16   | Float encoded                        |
+| B-factor         | 16   | Float encoded                        |
+
+Total = **256 bits (32 bytes)** per atom
+
+### 🧬 Purpose
+
+- Enables future binary-based CIF formats or compression
+- Demonstrates theoretical understanding of memory-efficient storage
+- Adds novelty to the project from both a CS and bioinformatics angle
+
+
 ## 📂 File Structure
 
 ```bash
