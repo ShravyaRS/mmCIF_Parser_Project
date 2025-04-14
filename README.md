@@ -119,5 +119,10 @@ To make this mmCIF Parser Project more impactful, we've integrated advanced biol
 
 These files provide deeper biological context and show the power of parsing mmCIF data in real-world applications like mutation analysis and structure-based modeling.
 
+## ✅ Tests
+
+Basic unit tests for the parser are available in `test_mmcif_parser.py`. Run them with:
+```bash
+python test_mmcif_parser.py
 ---
 
