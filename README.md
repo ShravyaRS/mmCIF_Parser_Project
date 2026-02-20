@@ -1,128 +1,86 @@
-# 🧬 mmCIF Parser in Python (No Biopython)
+# mmCIF Parser in Python
 
-This project demonstrates how to parse mmCIF (Macromolecular Crystallographic Information File) formats **from scratch using Python**. It serves as both an educational resource and a practical tool for molecular biology and structural bioinformatics.
+A lightweight mmCIF (Macromolecular Crystallographic Information File) parser built from scratch in Python, with no external dependencies. Designed as both an educational resource and a practical tool for structural bioinformatics.
 
----
-👉 Check out the [Features](Features.md) of this project.
-
-## 🚀 Features
-
-- ✅ No external dependencies (not even Biopython!)
-- 🧠 Clean object-oriented Python code
-- 📊 Extracts atomic-level information from CIF files
-- 📁 Supports .cif files from RCSB PDB
-- 💡 Perfect for learning how file formats work internally
+See [Features.md](Features.md) for a detailed feature list.
 
 ---
 
-# 📘 Theoretical Binary Data Structure Model for mmCIF Parser
+## Features
 
-## 🧠 Objective
-To define a theoretical low-level binary data structure for storing mmCIF entries and sections efficiently in memory, mimicking a compiled or serialized format.
-
----
-
-## 1️⃣ Data Record Structure
-
-Each mmCIF data item (e.g. atom site, loop header, values) is internally represented in the following binary format:
-
-
-| Segment            | Description                                   | Example                    |
-|--------------------|-----------------------------------------------|----------------------------|
-| RECORD_TYPE (1B)   | 0x01 = header, 0x02 = loop, 0x03 = data value | `0x02`                     |
-| RECORD_ID (2B)     | Unique ID for the entry (short int)           | `0x00FA`                   |
-| FIELD_NAME_LENGTH  | Length of the field name (1B)                 | `0x07`                     |
-| FIELD_NAME         | UTF-8 string of field name                    | `_atom_site`               |
-| VALUE_LENGTH       | Length of the value (1B)                      | `0x05`                     |
-| VALUE              | UTF-8 string of the value                     | `C1'`                      |
+- No external dependencies (no Biopython required)
+- Clean, object-oriented Python code
+- Extracts atomic-level information from CIF files
+- Supports .cif files from RCSB PDB
+- Useful for understanding how structural biology file formats work internally
 
 ---
 
-## 2️⃣ Example: `_atom_site.label_atom_id  C1'`
+## Theoretical Binary Data Structure Model
 
-In binary (hex representation):
+### Objective
 
+Define a low-level binary data structure for storing mmCIF entries and sections efficiently in memory, simulating a compiled or serialized format.
+
+### Data Record Structure
+
+Each mmCIF data item (atom site, loop header, value) is represented in the following binary format:
+
+| Segment | Description | Example |
+|---------|-------------|---------|
+| RECORD_TYPE (1B) | 0x01 = header, 0x02 = loop, 0x03 = data value | `0x02` |
+| RECORD_ID (2B) | Unique ID for the entry (short int) | `0x00FA` |
+| FIELD_NAME_LENGTH (1B) | Length of the field name | `0x07` |
+| FIELD_NAME | UTF-8 string of field name | `_atom_site` |
+| VALUE_LENGTH (1B) | Length of the value | `0x05` |
+| VALUE | UTF-8 string of the value | `C1'` |
+
+### Block Structure
+
+Each mmCIF block is a binary sequence of multiple record units. A block header can optionally store metadata such as loop count, atom count, etc.
+
+### Why This Model
+
+- Enables serialization and memory-efficient storage
+- Fast search and indexing for compiled applications
+- Suitable for integration with compiled languages (C, Rust)
+- Can be exported as `.bin` for direct loading into visualization tools or bioinformatics engines
 
 ---
 
-## 3️⃣ Block Structure
-
-Each mmCIF block is a binary sequence of multiple `RECORD` units. Parsing follows this logic:
-
-
-Optional: A BLOCK_HEADER could store metadata like number of loops, atom count, etc.
-
----
-
-## 4️⃣ Why Use This Model?
-
-- 🧠 Enables serialization and memory-efficient storage
-- ⚡️ Fast search and indexing in future compiled applications
-- 🔬 Suitable for integration with compiled languages (C, Rust)
-- 💾 Can be exported as `.bin` for direct loading into visualization tools or bioinformatics engines
-
----
-
-## 📦 Future Possibility
-
-We may build a compiler that translates standard mmCIF into this binary form for fast parsing in high-performance environments like protein modeling pipelines.
-
----
-
-
-
-## 📂 File Structure
-
-```bash
+## File Structure
+```
 mmCIF_Parser_Project/
-├── main.py              # Run this to see the parser in action
-├── mmcif_parser.py      # Core parsing logic
-├── example.cif          # Sample mmCIF file
-└── README.md            # This file
-## 📌 Usage
+├── main.py                # Run this to see the parser in action
+├── mmcif_parser.py        # Core parsing logic
+├── data_structures.py     # Binary data structure model
+├── enzyme_parser.py       # Enzyme-specific parsing utilities
+├── example.cif            # Sample mmCIF file
+├── data/                  # Additional CIF files
+└── README.md
+```
 
-To run the parser on the provided example file:
-
+## Usage
 ```bash
 python main.py data/example.cif
-### Theoretical Binary Flowchart
+```
 
-![Theoretical Binary Flowchart](A_flowchart_diagram_depicts_a_theoretical_binary_d.png)
-
-## 📂 Theoretical Model
-
-📄 [Theoretical Binary Representation](./theoretical_model.md)  
-A structured binary representation of mmCIF elements in memory.
-
----
-
-## 🔍 Extended Analyses
-
-To make this mmCIF Parser Project more impactful, we've integrated advanced biological insights related to real enzymes:
-
-- 🔬 [Enzyme Comparison: TPH1 vs PAH](./enzyme_comparison.md)
-- 🧬 [Disease Mutation Prediction](./mutation_prediction.md)
-- 🧠 [Structure Prediction and Modeling](./structure_prediction.md)
-
-These files provide deeper biological context and show the power of parsing mmCIF data in real-world applications like mutation analysis and structure-based modeling.
-
----
----
-
-## 🔍 Extended Analyses
-
-To make this mmCIF Parser Project more impactful, we've integrated advanced biological insights related to real enzymes:
-
-- 🔬 [Enzyme Comparison: TPH1 vs PAH](./enzyme_comparison.md)
-- 🧬 [Disease Mutation Prediction](./mutation_prediction.md)
-- 🧠 [Structure Prediction and Modeling](./structure_prediction.md)
-
-These files provide deeper biological context and show the power of parsing mmCIF data in real-world applications like mutation analysis and structure-based modeling.
-
-## ✅ Tests
-
-Basic unit tests for the parser are available in `test_mmcif_parser.py`. Run them with:
+## Tests
 ```bash
 python test_mmcif_parser.py
+```
+
 ---
 
+## Extended Analyses
+
+Additional analyses demonstrating real-world applications of mmCIF parsing:
+
+- [Enzyme Comparison: TPH1 vs PAH](./enzyme_comparison.md)
+- [TPH1 vs PAH Overview](./TPH1_vs_PAH_Overview.md)
+
+---
+
+## License
+
+See [LICENSE](LICENSE) for details.
