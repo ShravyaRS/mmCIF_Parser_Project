@@ -1,6 +1,6 @@
-# 🧬 TPH1 vs PAH – Biological Role Overview
+#  TPH1 vs PAH – Biological Role Overview
 
-## 🔹 Tryptophan Hydroxylase 1 (TPH1)
+##  Tryptophan Hydroxylase 1 (TPH1)
 
 - **Function**: Converts tryptophan to 5-hydroxytryptophan (5-HTP), a precursor to serotonin.
 - **Tissue Specificity**: Expressed mainly in peripheral tissues (gut, pineal gland).
@@ -13,7 +13,7 @@
 
 ---
 
-## 🔹 Phenylalanine Hydroxylase (PAH)
+##  Phenylalanine Hydroxylase (PAH)
 
 - **Function**: Converts phenylalanine to tyrosine, a key metabolic step.
 - **Tissue Specificity**: Primarily in liver tissue.
@@ -26,7 +26,7 @@
 
 ---
 
-## 🔬 Summary Table
+##  Summary Table
 
 | Feature             | TPH1                          | PAH                            |
 |---------------------|-------------------------------|--------------------------------|

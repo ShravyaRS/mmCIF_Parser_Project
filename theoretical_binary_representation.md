@@ -1,22 +1,22 @@
-# 🧠 Theoretical Binary Representation
+#  Theoretical Binary Representation
 
 This document presents a conceptual binary-level structure to represent mmCIF data.
 
 ---
 
-### 📦 Data Block Header
+###  Data Block Header
 
 (M = 01001101, etc. → MMCI...N)
 
 ---
 
-### 🔁 Loop Structure Encoding
+###  Loop Structure Encoding
 
 (L = 01001100, O = 01001111, P = 01010000 → “LOOP”)
 
 ---
 
-### 🔬 Atom Site Encoding (Example)
+###  Atom Site Encoding (Example)
 
 | mmCIF Field           | Binary Representation             |
 |------------------------|-----------------------------------|
@@ -28,7 +28,7 @@ This document presents a conceptual binary-level structure to represent mmCIF da
 
 ---
 
-### 📝 Notes
+###  Notes
 
 - This is a **conceptual representation** for modeling how structured mmCIF data might look in binary.
 - Helps in designing **compressed or efficient storage/transmission formats**.
